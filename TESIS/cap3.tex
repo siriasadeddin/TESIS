@@ -1,0 +1,100 @@
+\chapter{Dinámica cuántica del electrón en la red bajo el efecto de campos externos oscilantes}
+
+\section{Método de Floquet-Magnus}\label{cap:8}
+
+En este capítulo, se estudia un método que permite modelar la dinámica cuántica del electrón bajo la influencia de Hamiltonianos dependientes del tiempo. Se quiere obtener un Hamiltoniano efectivo independiente del tiempo, usando la expansión de Floquet-Magnus.  
+
+Wilhelm Magnus (1907-1990) fue un matemático americano-alemán, con importantes contribuciones a la \textit{Teoría Combinatoria de Grupos}, \textit{Álgebra de Lie}, \textit{Física Matemática} y \textit{Funciones Elípticas}. Su libro, ''\textit{Hill's Equations}'' ha sido clave en la realización de este trabajo. La expansión de Floquet-Magnus es una aproximación útil para resolver ecuaciones diferenciales lineales dependientes del tiempo; las cuales son un problema común en Física Cuántica y Física del Estado Sólido. Estas ecuaciones son tratadas con teoría de Hamiltonianos efectivos y de Floquet \cite{mananga}.
+La expansión de Floquet-Magnus es una nueva versión de la expansión de Magnus \cite{maricq}; Maricq, en su trabajo, desarrolla una formula recursiva para obtener los términos de la expansión y da las condiciones para su convergencia \cite{mananga}.
+
+Se puede extender la Teoría de Floquet a Hamiltonianos periódicos en el tiempo. Siguiendo los cálculos hechos por Maricq en 1982 \cite{maricq}, y posteriormente por Martínez en 2017 \cite{martinez2017} se hallan soluciones independientes del tiempo para la dinámica de un electrón en la red que experimenta una perturbación dependiente del tiempo.
+
+\subsection{Expansión de Floquet-Magnus}\label{cap:8.1}
+
+Se define la ecuación de Schrödinger dependiente del tiempo, con Hamiltoniano periódico $H(t)$:
+
+\begin{equation}\label{eq:8.1}
+    \frac{dU(t)}{dt}=-iH(t)U(t)
+\end{equation}
+
+La misma tiene la solución dada por la Teoría de Floquet y cumple con el teorema \ref{teo:2.1} (sección \ref{cap:2}). En consecuencia, se sabe que existe un $P(t)$ periódico, con periodo $\tau$ tal que se cumple:
+
+\begin{equation}\label{eq:8.2}
+    U(t+\tau)=U(t)e^{-i\overline{H}\tau}
+\end{equation}
+
+\begin{equation}\label{eq:8.3}
+    U(t)=P(t)e^{-i\overline{H}t}
+\end{equation}
+
+El Hamiltoniano efectivo (independiente del tiempo) del sistema es el operador $\overline{H}$ y, $P(t)$ y $\overline{H}$ se definen bajo el esquema de perturbación \cite{maricq} como expansiones en serie de orden $\lambda$:
+
+\begin{equation}\label{eq:8.4}
+    P(t)=\sum_n \lambda^{n}P_n(t)
+\end{equation}
+
+\begin{equation}\label{eq:8.5}
+    \overline{H}=\sum_n \lambda^n\overline{H_n}
+\end{equation}
+
+Se definen, además, los términos de orden cero  como en \ref{eq:8.6} \cite{maricq}\cite{martinez2017}. Y, siguiendo el procedimiento del apéndice \ref{apendice:C} se obtienen las expresiones para $P(t)$ y $\overline{H(t)}$; mismas que obtuvo Maricq en su trabajo \cite{maricq}, teniendo así, una expresión para Hamiltonianos efectivos de sistemas sometidos a Hamiltonianos dependientes del tiempo: 
+
+\begin{equation}\label{eq:8.6}
+    P_0(t)=1, \ \overline{H_0}=0
+\end{equation}
+
+\begin{equation}\label{eq:8.7}
+    P_n(t)=-i\int^{t}_{0}\left[ H(t')P_{n-1}(t')-\sum^{n-1}_{k=1}P_k(t')\overline{H_{n-k}}-\overline{H_n}\right]
+\end{equation}
+
+\begin{equation}\label{eq:8.8}
+    \overline{H_n}=\frac{-i}{\tau}\int^{\tau}_{0}\left[ H(t)P_{n-1}(t')-\sum^{n-1}_{k=1}P_k(t')\overline{H_{n-k}}\right]
+\end{equation}
+
+\subsection{Convergencia de la expansión}\label{cap:8.2}
+
+Las expresiones de $P(t)$ y $\overline{H}$ constituyen una serie de soluciones formales para la ecuación \ref{eq:3.1} con la condición que $P(t)$ es periódica, con periodo $\tau$. Sin embargo, es necesario probar la convergencia de estas series para poder afirmar que son soluciones analíticas \cite{maricq}. Se consideran ecuaciones diferenciales de la siguiente forma:
+
+\begin{equation}\label{eq:8.9}
+    F(x, y, y') = 0
+\end{equation}
+
+Donde $x$ es de variable compleja $y(x)$ o una función vectorial compleja. Además $F$ es también una función vectorial de variable compleja, definida analítica en el vecindario de $(x_0,y_0,y'_0)$ y $F(x_0,y_0,y'_0)=0$. El problema de hallar soluciones analíticas cerca de $(x_0,y_0,y'_0)$ se divide en una parte algebraica y otra analítica. La parte algebraica consiste en la construcción, o al menos, la prueba de la existencia de una solución formal de la forma:
+
+\begin{equation}\label{eq:8.10}
+    u=\sum^{\infty}_{n=0}a_n(x-x_0)^n  ,   \ a_0=y_0 \ y \ a_1=y'_0
+\end{equation}
+
+La solución $u$ es llamada formal porque es una serie de potencias formal (no necesariamente convergente dentro de un radio positivo de convergencia), que satisface \ref{eq:8.9} en el sentido que su substitución del lado izquierdo de la formula da como resultado cero del lado derecho de la misma. La parte analítica del problema consiste en probar que la solución formal $u$ es la  solución verdadera de \ref{eq:8.9}, e idealmente converge. Las soluciones formales solo serán significativas para \ref{eq:8.9} si son asintóticas \cite{hautus}.
+
+Determinar la convergencia de las series \ref{eq:8.4} y \ref{eq:8.5} presenta una dificultad, ya que ambas son interdependientes \cite{maricq}. Se aplica entonces una forma indirecta de probar su convergencia. De la ecuación \ref{eq:8.3} y de la periodicidad de $P(t)$ se obtiene que:
+
+\begin{equation}\label{eq:8.11}
+    U(\tau)=e^{-i\overline{H}\tau}
+\end{equation}
+
+Se puede reescribir  $U(t)$ por el método de aproximaciones de Picard \cite{ravi}\cite{maricq}, de la siguiente manera:
+
+\begin{equation}\label{eq:8.12}
+    U_0(t)=1
+\end{equation}
+
+\begin{equation}\label{eq:8.13}
+    U_{n+1}(t)=1-i\int^{t}_0 \lambda H(t)U_n(t)dt
+\end{equation}
+
+Esta secuencia iterativa produce (por inducción) una serie de potencias en $\lambda$ de la siguiente forma:
+
+\begin{equation}\label{eq:8.14}
+    U_k(t)=1-i\lambda\int^{t}_0H(t)dt+\dots +i^k\lambda^k\int^{t}_0H(t_k)\dots \int^{t}_0H(t_1)dt_1 \dots dt_k
+\end{equation}
+
+Como $H(t)$ es una función acotada periódica, se dice por simplicidad y sin pérdida de generalidad, que el Hamiltoniano $H(t)$ está acotado por $1$. Usando esta condición e integrando varias veces, se obtiene que  $U_k-U_{k-1}$ (apéndice \ref{apendice:C}) cumple que: 
+
+\begin{equation}\label{eq:8.15}
+    \norm{U_k-U_{k-1}}\leq \frac{\lambda^kt^k}{k!}
+\end{equation}
+
+Se encuentra entonces que a medida que $k$ crece el error disminuye drásticamente, y $U_k$ converge. Por ende, $e^{-i\overline{H}\tau}$ debe converger, entonces $\overline{H}$ converge. En consecuencia la solución de Floquet  $U(t)=P(t)e^{-i\overline{H}t}$ converge. 
+
+Se halla que existe una solución analítica $U(t)$ de \ref{eq:8.1} definida como en \ref{eq:8.3} y que además la serie de Floquet-Magnus converge. Por ende, es posible usar la base matemática desarrollada en este capítulo para encontrar soluciones aproximadas a las ecuaciones de Schrödinger periódicas dependientes del tiempo. 

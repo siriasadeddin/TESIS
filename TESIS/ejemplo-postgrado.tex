@@ -1,0 +1,114 @@
+\documentclass[pregrado]{tesis-usb}
+
+% paquetes
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{acronym}
+\usepackage{float}
+% \usepackage{hyperref}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{color}
+\usepackage{mathdots}
+\usepackage{physics}
+
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% Para arreglar espacio entre parrafos y sangria
+\usepackage{parskip}
+\setlength{\parindent}{3ex}
+
+% fragmentos de código
+\usepackage{listings}
+\renewcommand{\lstlistingname}{Fragmento de Código}
+\renewcommand{\lstlistlistingname}{Índice de Fragmentos de Código}
+\lstset{
+	basicstyle=\ttfamily\footnotesize,
+	frame=single,
+	captionpos=b,
+	numbers=left,
+	showstringspaces=false,
+	aboveskip=1em,
+	belowskip=2em,
+	xleftmargin=1em,
+	xrightmargin=1em,
+	tabsize=4}
+
+
+% estilo de las referencias
+\bibliographystyle{plain}
+
+\autor{Siria Sadeddin}
+\autori{}
+\usbid{08-11245}
+\titulo{ Dinámica de partículas de Wannier en campos de fuerza inhomogéneos, periódicos y rápidamente oscilantes}
+\fecha{Enero~de~2020}
+\agno{2020}
+\fechadefensa{27~de~enero~de~2020}
+\tutor{Prof. Luis Alfredo Martínez}
+\trabajo{Proyecto de Grado}
+\coord{Licenciatura en F\'isica} %Coloca la coordinación
+\grado{Licenciada en F\'isica} %coloca el postgrado
+\carrera{Carrera}
+\programa{Maestr\'ia en Matem\'aticas}
+\juradouno{Eduardo Pestana}
+\juradodos{Gloria Buendía}
+\juradotres{Luis Alfredo Martínez}
+
+
+\makeatletter
+\let \@sverbatim \@verbatim
+\def \@verbatim {\@sverbatim \verbatimplus}
+{\catcode`'=13 \gdef \verbatimplus{\catcode`'=13 \chardef '=13 }} 
+\makeatother
+
+\begin{document}
+
+\newtheorem{obs}{Observaci\'on}
+\newtheorem{prob}{Problema}
+\newtheorem{proy}{Proyecto}
+\newtheorem{defi}{Definición}
+\newtheorem{prop}{Proposici\'on}
+\newtheorem{teo}{Teorema}
+\newtheorem{ejem}{Ejemplo}
+
+
+
+\maketitle
+\input{actas}
+\input{actas2}
+\frontmatter
+\input{resumen}
+\input{dedicatoria}
+\input{agradecimientos}
+\tableofcontents
+\listoffigures
+\useacronyms
+%\input{notacion}
+
+\mainmatter
+\input{introduccion}
+\input{cap1}
+\input{cap2}
+\input{cap3}
+\input{cap4}
+\input{cap5}
+\input{conclusiones}
+\nocite{*}
+\bibliography{referencias}
+\appendix
+\input{apendiceA.tex}
+\input{apendiceB.tex}
+\input{apendiceC.tex}
+\input{apendiceD.tex}
+\input{apendiceE.tex}
+\end{document}

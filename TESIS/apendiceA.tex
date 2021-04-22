@@ -1,0 +1,147 @@
+\appendix
+\chapter{Demostración de los teoremas de la Teoría de Floquet}\label{apendice:A}
+
+En este apéndice se presentan las demostraciones a los teoremas enunciados en el capitulo \ref{cap:2} que contienen las formalidades matemáticas necesarias en la Teoría de Floquet.
+
+\section{Teorema 1}\label{apendice:A.1} 
+
+Existe una constante no nula $\rho$ y una solución no trivial $\psi(x)$ de \ref{eq:2.3} tal que se cumple la siguiente ecuación \cite{floquet}:.
+
+\begin{equation}\label{eq:A.1}
+    \psi(x+a)=\rho \,\psi(x)
+\end{equation}
+
+\subsection*{Demostración}
+
+Sean $\phi_1(x)$ y $\phi_2(x)$ dos soluciones linealmente independientes de \ref{eq:2.1} que satisfacen las condiciones
+$$\phi_1(0)=1,\quad\phi^\prime_1(0)=0,\qquad \phi_2(0)=1,\, \phi^\prime_2(0)=0$$
+La ecuación \ref{eq:2.1} es lineal y de segundo orden, en consecuencia,  toda solución \ref{eq:2.1} tiene la forma
+
+\begin{equation}\label{eq:A.2}
+    \psi(x)=C_1\phi_1(x)+C_2\phi_2(x)
+\end{equation}.
+
+Como $\psi_1(x+a)$ y $\psi_2(x+a)$ también son soluciones linealmente independientes de \ref{eq:2.1}, también pueden usarse como base para su espacio de soluciones, en otras palabras, existe una matriz no singular $A=(A_{ij})$, cuyas entradas permiten escribir 
+
+\begin{equation}\label{eq:A.3}
+    \psi_1(x+a)=A_{11}\phi_1(x)+A_{12}\phi_2(x)
+\end{equation}
+
+\begin{equation}\label{eq:A.4}
+    \psi_2(x+a)=A_{21}\phi_1(x)+A_{22}\phi_2(x)
+\end{equation}
+
+ De ser cierta la hipótesis contenida en \ref{eq:A.1}, las identidades \ref{eq:A.2}, \ref{eq:A.3}, \ref{eq:A.4} implican
+
+\begin{equation}\label{eq:A.5}
+    (A_{11}-\rho)\,C_1+C_2A_{21}=0
+\end{equation}
+
+\begin{equation}\label{eq:A.6}
+    C_1A_{12}+C_2(A_{22}-\rho)=0
+\end{equation}
+
+que es el problema de autovalores y autovectores para la matriz $A$. La existencia de autovalores no triviales se establece a través de la ecuación secular: 
+
+\begin{equation}\label{eq:A.7}
+    \begin{vmatrix}
+    A_{11}-\rho & A_{21}\\
+    A_{12} & A_{22}-\rho
+    \end{vmatrix}=0
+\end{equation}
+
+\begin{equation}\label{eq:A.8}
+    \rho^2-(A_{11}+A_{22})\rho+\det(A)=0
+\end{equation}
+
+Como $A$ es no-singular $\det(A) \neq 0$. El teorema fundamental del álgebra garantiza la existencia de un valor no nulo de $\rho$ que satisface la ecuación \ref{eq:2.1}, lo que concluye la demostración del teorema.
+
+\section{Teorema 2}
+
+Existen soluciones linealmente independientes de \ref{eq:2.1} $\psi_1(x)$ y $\psi_2(x)$ tales que
+
+\begin{equation}\label{eq:A.9}
+    \psi_1(x)=e^{m_1x}p_1(x)
+\end{equation}
+
+\begin{equation}\label{eq:A.10}
+    \psi_2(x)=e^{m_2x}p_2(x)
+\end{equation}
+
+Donde $m_1$ y $m_2$ son constantes, no necesariamente distintas, y $p_1(x)$ y $p_2(x)$ son periódicas con periodo $a$ \cite{floquet}.
+
+\subsection*{Demostración}
+
+Supongamos que \ref{eq:2.7} tiene soluciones distintas $\rho_1$ y $\rho_2$, entonces según el teorema \ref{teo:2.1} existen soluciones no triviales $\psi_k(x)$ tales que 
+
+\begin{equation}\label{eq:A.11}
+    \psi_k(x+a)=\rho_k\psi_k(x), \ (k=1,2)
+\end{equation}
+
+Definimos $m_k$ y $p_k(x)$ tales que
+
+\begin{equation}\label{eq:A.12}
+   \rho_k=e^{am_k}
+\end{equation}
+
+\begin{equation}\label{eq:A.13}
+    p_k(x)=e^{-m_kx}\psi_k(x)
+\end{equation}
+
+Entonces por \ref{eq:A.11} y \ref{eq:A.12} $p_k(x)$ es periódico de periodo $a$ ($k=1,2$) y se demuestra el teorema \cite{floquet}.
+
+\begin{equation}\label{eq:A.14}
+  \psi_k(x)=p_k(x)e^{m_kx},\  p_k(x+a)=p_k(x)
+\end{equation}
+
+\section{Teorema 3}
+
+Existe una contante no nula $\rho$ no nula, y una solución no trivial $\psi(x)$ a \ref{eq:2.7} tal que 
+
+\begin{equation}\label{eq:A.15}
+    \psi(x+a)=\rho \psi(x)
+\end{equation}
+
+La prueba es análoga al teorema \ref{teo:2.1}. 
+
+\subsection*{Demostración}
+Sea $\Phi(x)$ la matriz fundamental de soluciones, tal que 
+
+\begin{equation}\label{eq:A.16}
+    \Phi(0)=I
+\end{equation}
+
+Donde $I$ es la matriz identidad de tamaño $n \times n$ 
+
+Como $\Phi(x+a)$ también es solución de \ref{eq:2.7}. Existe una matriz constante no-singular $A$ tal que 
+
+\begin{equation}\label{eq:A.17}
+    \Phi(x+a)=\Phi(x)A
+\end{equation}
+
+Y cada solución $\psi(x)$ tiene la forma 
+
+\begin{equation}\label{eq:A.18}
+    \psi(x)=\Phi(x)c
+\end{equation}
+
+Donde c es un vector constante. Haciendo uso de \ref{eq:A.17} y \ref{eq:A.18} sobre \ref{eq:A.15} se puede obtener
+
+\begin{equation}\label{eq:A.19}
+    Ac=\rho c
+\end{equation}
+
+Cuya solución es no trivial si 
+
+\begin{equation}\label{eq:A.20}
+    \det{A-\rho I}=0
+\end{equation}
+
+Este es un polinomio de orden $n$ para el cual existe al menos un $\rho$ que satisface \ref{eq:A.20} y cuyo valor en distinto de cero, tomando en cuenta que A es no-singular. 
+Sean $\rho_1,\rho_2,\dots,\rho_n$ las $n$ raíces de \ref{eq:A.20}. Entonces $A$ tiene la forma canónica
+
+\begin{equation}\label{eq:A.21}
+    A=J^{-1}BJ
+\end{equation}
+
+

@@ -1,0 +1,330 @@
+\chapter{Cálculos semiclásicos}\label{apendice:B}
+
+En este apéndice se presentan algunos cálculos que se hicieron para obtener la dinámica semiclásica del electrón en la red en presencia de campos externos rápidamente oscilantes.
+
+\section{Energía del electrón en el modelo de enlace fuerte}\label{apendice:B.1}
+En esta sección se calculará de forma explicita la energía de un electrón en la red de \textit{Enlace Fuerte}, siguiendo el procedimiento del capitulo \ref{cap:5}
+
+Tomaremos la ecuación \ref{eq:5.15} y la introduciremos en el Hamiltoniano $H_{mn}$
+
+\begin{equation}\label{eq:B.1}
+\begin{split}
+    &\mathcal{E}(k)\sum_ne^{ikna}\psi_{n}(x-na)=\epsilon_0\sum_n e^{ikna}\phi_{n}(x-na)+\\&+A(\sum_n e^{ik(n+1)a}\phi_{n}(x-(n+1)a)+\sum_n e^{ik(n-1)a}\phi_{n}(x-(n-1)a))
+    \end{split}
+\end{equation}
+
+Tomando en cuenta la el teorema \ref{teo:2.1} de Floquet
+
+\begin{equation}\label{eq:B.2}
+\begin{split}
+    &\mathcal{E}(k)\sum_ne^{ikna}\phi_{n}(x-na)=\epsilon_0\sum_ne^{ikna}\phi_{n}(x-na)+\\&+A\left(e^{ika}\sum_n e^{ikna}\phi_{k}(x-na)+e^{-ika}\sum_n e^{ikna}\phi_{k}(x-na)\right)
+\end{split}
+\end{equation}
+
+\begin{equation}\label{eq:B.3}
+    \mathcal{E}(k)=\epsilon+A\left(e^{ika}+e^{-ika}\right)
+\end{equation}
+
+\begin{equation}\label{eq:B.4}
+    \mathcal{E}(k)=\epsilon_0+2A\cos(ka)
+\end{equation}
+
+Éste resultado es la función de dispersión del electrón en la red.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{calculo del vector de onda rápido $\eta$}\label{apendice:B.2}
+
+De la ecuación \ref{eq:B.5} se observa de manera inmediata que la función $\dot{\eta}$ del movimiento rápido se puede igualar a la fuerza $f(x)$, e integrando se obtiene un valor explícito para esta.
+     
+\begin{equation} \label{eq:B.5}
+    \dot{\eta}=f(x,t) 
+\end{equation}
+    
+\begin{equation}\label{eq:B.6}
+    \eta=\frac{\sum_{-\infty}^{\infty} f_n(x)\exp(in\omega t)}{in\omega}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+
+\section{Calculo de la posición de movimiento rápido $\xi$}\label{apendice:B.3}
+
+Tomamos en cuenta el hecho que $\eta$ es muy pequeño se hacen las aproximaciones:
+
+    \begin{equation}\label{eq:B.7}
+        \begin{cases}
+            \cos(\eta a) \approx 1-\frac{\eta^2a^2}{2}\\
+            \sin(\eta a) \approx \eta a 
+        \end{cases}
+    \end{equation}
+
+Y $\ddot{\xi}$ resulta:
+
+    \begin{equation}\label{eq:B.8}
+        \ddot{\xi}=2Aa^2[\cos(Ka)(1-\frac{\eta^2a^2}{2})-\sin(Ka)\eta a ]f(X,t)
+    \end{equation}
+
+Substituyendo \ref{eq:B.7} en \ref{eq:B.8}
+
+    \begin{equation}\label{eq:B.9}
+        \ddot{\xi}=2Aa^2[\cos(Ka)(1-\frac{\eta^2a^2}{2})-\sin(Ka)\eta a ]\dot{\eta}
+    \end{equation}
+
+    \begin{equation}\label{eq:B.10}
+        \ddot{\xi}=2Aa^2[\cos(Ka)(\dot{\eta}-\frac{\eta^2\dot{\eta}a^2}{2})-\sin(Ka)\eta\dot{\eta} a ]
+    \end{equation}
+
+    \begin{equation}\label{eq:B.11}
+        \int\int \ddot{\xi}dt'^2=\xi-\xi_o= \int \int 2Aa^2[\cos(Ka)(\dot{\eta}-\frac{\eta^2\dot{\eta}a^2}{2})-\sin(Ka)\eta\dot{\eta} a ]dt'^2
+    \end{equation}
+
+Se quiere obtener una expresión para $\xi$ para ello se calculan las integrales siguientes:
+
+
+1) $\int \dot{\eta} dt' dt'$
+
+    \begin{equation}\label{eq:B.12}
+        \begin{split}
+            I_1=&\int \dot{\eta} dt' dt'\\
+            =&\int d\eta dt' \\
+            =& \int \eta |^{t=t}_{t=0} dt'\\
+            =& \int \frac{\sum_{-\infty}^{\infty} f_n(x)\exp(i n\omega t')}{in\omega}|^{t=t}_{t=0} dt'\\
+            =&\int \frac{\sum_{-\infty}^{\infty} f_n(x)\exp(i n\omega t')}{in\omega}-\frac{\sum_{-\infty}^{\infty} f_n(x)}{in\omega} dt'\\
+            =& -\frac{\sum_{-\infty}^{\infty} f_n(x)\exp(i n\omega t')}{n^2\omega^2}|^{t=t}_{t=0}-\frac{\sum_{-\infty}^{\infty} f_n(x)}{in\omega}t+c\\
+            =& -\frac{\sum_{-\infty}^{\infty} f_n(x)\exp(i n\omega t)}{n^2\omega^2}+\frac{\sum_{-\infty}^{\infty} f_n(x)}{n^2\omega^2}-\frac{\sum_{-\infty}^{\infty} f_n(x)}{in\omega}t+c
+        \end{split} 
+    \end{equation}
+
+Recordando que $f_n(x)=f_{-n}(x)$ 
+
+    \begin{equation}\label{eq:B.13}
+        \begin{split}
+            \frac{\sum_{-\infty}^{\infty} f_n(x)}{in\omega}=&\frac{\sum_{1}^{\infty} f_n(x)}{in\omega}+\frac{\sum_{1}^{\infty} f_{-n}(x)}{-in\omega}\\
+            =&\frac{\sum_{1}^{\infty} f_n(x)}{in\omega}-\frac{\sum_{1}^{\infty} f_{n}(x)}{in\omega}\\
+            =&0
+        \end{split}
+    \end{equation}
+
+    \begin{equation}\label{eq:B.14}
+            I_1=-\frac{\sum_{-\infty}^{\infty} f_n(x)\exp(i n\omega t)}{n^2\omega^2}+\frac{\sum_{-\infty}^{\infty} f_n(x)}{n^2\omega^2}+c
+    \end{equation}
+
+2) $\int \eta^2\dot{\eta} dt' dt'$
+
+    \begin{equation}\label{eq:B.15}
+        \begin{split}
+            I_2=&\int \eta^2\dot{\eta} dt' dt'\\
+            =&\int \eta^2 d\eta dt' \\
+            =& \int \frac{\eta^3}{3} |^{t=t}_{t=0} dt' \propto \frac{1}{\omega^3} \approx 0
+        \end{split}
+    \end{equation}
+
+    \begin{equation}\label{eq:B.16}
+            I_2\approx 0
+    \end{equation}
+
+3) $\int \eta\dot{\eta} dt' dt'$
+
+    \begin{equation}\label{eq:B.17}
+        \begin{split}
+            I_3=&\int \eta\dot{\eta} dt' dt'\\
+            =&\int \eta d\eta dt' \\
+            =& \int \frac{\eta^2}{2} |^{t=t}_{t=0} dt' \\
+            =& \int (\frac{\sum_{-\infty}^{\infty} f_n(x)\exp(i n\omega t')}{in\omega})^2|^{t=t}_{t=0} dt'\\
+            =& \int \frac{1}{\omega^2} \{[\sum_{-\infty}^{\infty} \frac{f_n(x)}{n}\exp(i n\omega t')]^2-[\sum_{-\infty}^{\infty} \frac{f_n(x)}{n}]^2\} dt'\\
+            =&  \int \frac{1}{\omega^2} \{\sum_{-\infty}^{\infty} \frac{f_n(x)f_m(x)}{nm}\exp(i (n+m)\omega t')-\sum_{-\infty}^{\infty} \frac{f_n(x)f_m(x)}{nm}\} dt'\\
+            =&  \frac{1}{\omega^2} \{\sum_{-\infty}^{\infty} \frac{f_n(x)f_m(x)}{nm(n+m)i\omega}\exp(i (n+m)\omega t')|^{t=t}_{t=0}+\sum_{-\infty}^{\infty} \frac{f_n(x)f_m(x)}{nm}t-\sum_{-\infty}^{\infty}\frac{f_n(x)f_m(x)}{nm}t\}\\
+            =& \frac{1}{\omega^3} \sum_{-\infty}^{\infty} \frac{f_n(x)f_m(x)}{nm(n+m)i}\exp(i (n+m)\omega t')|^{t=t}_{t=0}\\
+            \approx & 0
+        \end{split}
+    \end{equation}
+    
+    \begin{equation}\label{eq:B.18}
+            \int \eta\dot{\eta} dt' dt' \approx 0 
+    \end{equation}
+
+En consecuencia, substituyendo \ref{eq:B.12}, \ref{eq:B.16} y \ref{eq:B.18} en \ref{eq:B.11}, se obtiene una expresión para $\xi$ 
+
+    \begin{equation}\label{eq:B.19}
+        \xi-\xi_0=2Aa^2\cos(Ka)(-\frac{\sum_{-\infty}^{\infty} f_n(x)\exp(i n\omega t)}{n^2\omega^2}+\frac{\sum_{-\infty}^{\infty} f_n(x)}{n^2\omega^2}+c)
+    \end{equation}
+
+Escogiendo $\xi_0=-\frac{\sum_{-\infty}^{\infty} f_n(x)}{n^2\omega^2}$ y $c=0$
+
+    \begin{equation}\label{eq:B:20}
+            \xi=-2Aa^2\cos(Ka)\frac{\sum_{-\infty}^{\infty} f_n(x)\exp(i n\omega t)}{n^2\omega^2}
+    \end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Calculo de la aceleración efectiva }\label{apendice:B.4}
+Se quiere calcular la aceleración efectiva semiclásica para el electrón en la red de enlace fuerte bajo el efecto de una fuerza rápidamente oscilante, para esto, es necesario calcular son promedios que se presentan en esta sección. 
+
+\begin{equation}\label{eq:B.21}
+    \begin{split}
+        \overline{\ddot{X}}=& 2Aa^2[(-\cos(Ka)\overline{\cos(\eta a)}\frac{dU}{dX}+\sin(Ka)\overline{\sin(\eta a)}\frac{dU}{dX})\\&
+        (-\cos(Ka)\overline{\cos(\eta a)\xi}\frac{d^2U}{dX^2}+\sin(Ka)\overline{\sin(\eta a)\xi}\frac{d^2U}{dX^2})+ \\ &
+        (\cos(Ka)\overline{\cos(\eta a)\xi \frac{\partial f(X,t)}{\partial X}}-\sin(Ka)\overline{\sin(\eta a)\xi \frac{\partial f(X,t)}{\partial X}})]  
+     \end{split}
+\end{equation}
+
+
+\begin{enumerate}
+
+\item  \textbf{ $\overline{\cos(\eta a)} $:}
+
+    \begin{equation}\label{eq:B.22}
+        \begin{split}
+            \overline{\cos(\eta a)} \approx &1-\frac{\overline{\eta^2}a^2}{2}\\
+        \end{split}
+    \end{equation}
+
+    \begin{equation}\label{eq:B.23}
+        \overline{\eta^2}=-\sum_{n,m} \frac{f_n(x)f_m(x)\overline{\exp{[i(n+m)\omega t]}}}{\omega^2nm}    
+    \end{equation}
+
+    \begin{equation}\label{eq:B.24}
+        \overline{\exp{[i(n+m)\omega t]}}=\frac{1}{T}\int^t_0 \exp{[i(n+m)\omega t']}dt'=\delta_{n,-m}
+    \end{equation}
+
+    \begin{equation}\label{eq:B.25}
+        \begin{split}
+            \overline{\eta^2}=&-\sum_{n,m}\frac{f_n(x)f_m(x)\delta_{n,-m}  }{\omega^2nm}\\
+            =& \sum^{\infty}_{-\infty} \frac{f^2_n(x)}{\omega^2n^2}
+        \end{split}
+    \end{equation}
+
+    \begin{equation}\label{eq:B.26}
+            \overline{\cos{\eta a}} \approx 1-\frac{a^2}{2}\sum^{\infty}_{-\infty} \frac{f^2_n(x)}{\omega^2n^2}
+    \end{equation}
+
+\item  \textbf{ $\overline{\sin({\eta a})}$:}
+    
+    \begin{equation}\label{eq:B.27}
+        \overline{\sin({\eta a})} \approx \overline{\eta} a
+    \end{equation}
+
+    \begin{equation}\label{eq:B.28}
+        \overline{\eta}=\sum^{\infty}_{-\infty}\frac{f_n(x)\overline{\exp(in\omega t)}}{in\omega}=0
+    \end{equation}
+
+    \begin{equation}\label{eq:B.29}
+            \overline{\sin(\eta a)} \approx 0
+    \end{equation}
+
+\item  \textbf{$\overline{\xi\cos(\eta a)}$:}
+
+    \begin{equation}\label{eq:B.30}
+        \begin{split}
+            \overline{\xi\cos(\eta a)} \approx & \overline{\xi( 1-\frac{a^2}{2}\eta^2)}\\
+            \approx & \overline{\xi}-\frac{a^2}{2}\overline{\xi \eta^2}
+        \end{split}
+    \end{equation}
+
+    \begin{equation}\label{eq:B.31}
+        \overline{\xi}=0
+    \end{equation}
+
+    \begin{equation}\label{eq:B.32}
+        \begin{split}
+        &\overline{\xi\eta^2}= (2Aa^2\cos(Ka)\frac{\sum_{-\infty}^{\infty} f_n(x)e^{i n\omega t}}{n^2\omega^2})(\sum_{n,m} \frac{f_n(x)f_m(x)e^{i(n+m)\omega t}}{\omega^2nm}) \\ &\propto \frac{1}{\omega^4} \approx 0  
+        \end{split}
+    \end{equation}
+
+    \begin{equation}\label{eq:B.33}
+            \overline{\xi \cos(\eta a)} \approx 0    
+    \end{equation}
+
+\item \textbf{ $\overline{\xi \sin(\eta a)}$: }
+
+    \begin{equation}\label{eq:B.34}
+            \overline{\xi \sin(\eta a)} \approx \overline{\xi \eta}a \propto \frac{1}{\omega^3} \approx 0
+    \end{equation}
+
+\item  \textbf{$\overline{\cos(\eta a)\xi \frac{\partial f(X,t)}{\partial X}}$:}
+
+    \begin{equation}\label{eq:B.35}
+        \begin{split}
+            \overline{\cos(\eta a)\xi \frac{\partial f(X,t)}{\partial X}} &\approx \overline{\xi(1-\frac{a^2}{2}\eta^2) \frac{\partial f(X,t)}{\partial X}}=\overline{\xi\frac{\partial f(X,t)}{\partial X}}-\overline{\frac{a^2}{2}\eta^2\xi\frac{\partial f(X,t)}{\partial X}}\\
+            &\approx \overline{\xi\frac{\partial f(X,t)}{\partial X}}
+        \end{split}
+    \end{equation}
+
+ya que 
+
+    \begin{equation}\label{eq:B.36}
+        \overline{\frac{a^2}{2}\eta^2\xi\frac{\partial f(X,t)}{\partial X}} \propto \frac{1}{\omega^3} \approx 0
+    \end{equation}
+
+por lo tanto 
+
+    \begin{equation}\label{eq:B.37}
+            \overline{\cos(\eta a)\xi \frac{\partial f(X,t)}{\partial X}} \approx \overline{\xi\frac{\partial f(X,t)}{\partial X}}
+    \end{equation}
+    
+\item  \textbf{ $\overline{\xi \sin(\eta a)\frac{\partial f(x,t)}{\partial x}}$:}
+
+    \begin{equation}\label{eq:B.38}
+        \begin{split}
+            &\overline{\xi \sin(\eta a)\frac{\partial f(x,t)}{\partial x}} \approx  \overline{\xi \eta a\frac{ \partial f(x,t)}{\partial x}}\\
+            \approx & a  (-2Aa^2\cos(Ka)\frac{\sum_{-\infty}^{\infty} f_n(x)\exp(i n\omega t)}{n^2\omega^2})(\sum^{\infty}_{-\infty}\frac{f_n(x)\exp(in\omega t)}{in\omega})\\& \propto \frac{1}{\omega^3} \approx 0
+        \end{split}
+    \end{equation}
+
+\begin{equation}\label{eq:B.39}
+    \overline{\xi \sin(\eta a)\frac{\partial f(x,t)}{\partial x}} \approx 0
+\end{equation}
+
+
+\item \textbf{ $\overline{\xi f(X,t)}$}
+
+ \begin{equation}\label{eq:B.40}
+        \overline{\xi \frac{\partial f(X,t)}{\partial X}}=-2Aa^2\cos(ka)\sum_n \frac{1}{2n^2\omega^2}\frac{\partial f_n^2(X)}{\partial X}
+    \end{equation}
+
+ Integrando respecto a $X$ da el resultado intermedio
+
+    \begin{equation}\label{eq:B.41}
+        \overline{\xi f(X,t)}=-2Aa^2\cos(Ka)\sum_n\frac{f_n^2(x)}{2n^2\omega^2}
+    \end{equation}
+ 
+ Por lo tanto la aceleración efectiva será:
+ 
+ \begin{equation}\label{eq:B.42}
+ \ddot{X}= -2Aa^2\cos(Ka)\left[\left(1-\frac{a^2}{2}\sum_n \frac{f_n^2(X)}{\omega^2n^2}\right)\frac{dU}{dX}+2Aa^2\cos(ka)\sum_n \frac{1}{2n^2\omega^2}\frac{\partial f_n^2(X)}{\partial X}\right]
+ \end{equation}
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Despeje de $\cos(aK)$}\label{apendice:B.5}
+
+%De \ref{eq:4.36} se  obtiene \ref{eq:B.43}
+
+ %   \begin{equation}\label{eq:B.43}
+  %      \cos(aK)\times\left(1-\frac{3a^2}{2}\sum_n \frac{f_n^2(X)}{\omega^2n^2}\right)=\frac{U-E}{2A} 
+   % \end{equation}
+
+%Despejemos $\cos(aK)$
+    
+ %   \begin{equation}\label{eq:B.44}
+  %  \begin{split}
+   %     \cos(aK)=&(\frac{U-E}{2A})(1-\frac{3a^2}{2}\sum_n \frac{f_n^2(X)}{\omega^2n^2})^{-1} \\
+    %    \approx & (\frac{U-E}{2A})(1+\frac{3a^2}{2}\sum_n \frac{f_n^2(X)}{\omega^2n^2})
+    %\end{split}
+    %\end{equation}
+    
+    %\begin{equation}\label{eq:B.45}
+     %       \cos(aK) \approx (\frac{U-E}{2A})(1+\frac{3 a^2}{2}\sum_n \frac{f_n^2(X)}{\omega^2n^2})
+    %\end{equation}
+
+%\section{Aceleración efectiva dependiente solo de $X$}\label{apendice:B.6}
+
+%Sustituyendo \ref{eq:B.45} en \ref{eq:4.29}
+    
+    %\begin{equation}\label{eq:B.46}
+    %\begin{split}
+     %   \ddot{X}=&-a^2(U-E)\left(1+a^2\sum_n \frac{f_n^2(X)}{\omega^2n^2} \right)\frac{dU}{dX}-a^4(U-E)^2\left(1+\frac{3 a^2}{2}\sum_n \frac{f_n^2(X)}{\omega^2n^2}\right)^2\sum_n\frac{\partial f_n^2(X)}{2n^2\omega^2\partial X}\\
+      %  \approx &-a^2(U-E)\left(1+a^2\sum_n \frac{f_n^2(X)}{\omega^2n^2} \right)\frac{dU}{dX}-a^4(U-E)^2\left(1+3a^2\sum_n \frac{f_n^2(X)}{\omega^2n^2}\right)\sum_n\frac{\partial f_n^2(X)}{2n^2\omega^2\partial X}\\
+       % \approx &-a^2(U-E)\left(1+a^2\sum_n \frac{f_n^2(X)}{\omega^2n^2} \right)\frac{dU}{dX}-a^4(U-E)^2\sum_n \frac{1}{2n^2\omega^2}\frac{\partial f_n^2(X)}{\partial X}\\
+        %\approx &-a^2(U-E)\frac{dU}{dX}-a^4(U-E)\sum_n \frac{f_n^2(X)}{\omega^2n^2}\frac{dU}{dX}-a^4(U-E)^2\sum_n \frac{1}{2n^2\omega^2}\frac{\partial f_n^2(X)}{\partial X}
+    %\end{split}
+%\end{equation}
+

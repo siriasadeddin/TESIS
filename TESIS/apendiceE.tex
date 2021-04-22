@@ -1,0 +1,314 @@
+\chapter{Uso del programa en Mathematica para el cálculo de Hamiltonianos efectivos cuánticos}
+
+Los cálculos de Hamiltonianos efectivos por el método iterativo de Floquet-Magnus se pueden modelar en un programa computacional usando, en nuestro caso, \textit{Mathematica} y obtener resultados fiables para cualquier potencial perturbativo externo al electrón en la red de \textit{Enlace Fuerte}. En este apéndice presentamos el código escrito y su uso para hallar el operador Hamiltoniano efectivo  $\hat{G}$ y el operador de micromovimiento $\hat{P}$ hasta orden 5 para el caso del Hamiltoniano estudiado por Martínes (2017) \cite{martinez2017}
+Sea $H$ el Hamiltoniano del electrón en el modelo de \textit{Enlace Fuerte} en presencia de perturbaciones $V_1(x)$ y $V_2(x,t)$
+
+\begin{equation}
+    H=-2A\cos(ak)+V_1(x)+V_2(x,t)
+\end{equation}
+
+Se definine $H_0$ como el Hamiltoniano de \textit{Tight Binding} en presencia de la perturbación independiente del tiempo $V_1$
+
+\begin{equation}
+    H_o=-2A\cos(ak)+ V_1(x)
+\end{equation}
+
+Y sea $H_1(x,t)$ la perturbación dependiente del tiempo, en el caso particular de este trabajo de grado, se estudian solamente perturbaciones sinusoidales.
+
+\begin{equation}
+    H_1= V_2(x,t)=V_2(x)\cos(\omega t)
+\end{equation}
+ 
+Donde $V_2$ es una función dependiente solo de $x$, llamaremos a la perturbación total $V(x,t)$.
+
+\begin{equation}
+    V(x,t)=V_1(x)+V_2(x,t)
+\end{equation}
+
+Las funciones $V_1(x)$ y $V_2(x)$ pueden ser escritas como series polinomiales, escribiéndolas como series de Taylor centradas en cero. Se definirán $V_1(x)$ y $V_2(x)$ como operadores polinomio de orden $n$, para el caso de este programa será suficiente trabajar con polinomios hasta orden $n=4$.
+
+\begin{equation}
+    V_1(x) = a_o + a_1x + a_2x^2 + a_3x^3 + a_4x^4
+\end{equation}
+
+\begin{equation}
+    V_2(x) = b_o + b_1x + b_2x^2 + b_3x^3 + b_4x^4
+\end{equation}
+
+Al trabajar las ecuaciones en forma cuántica, estas serán tratadas como operadores. En Mecánica cuántica el operador posición se define como sigue:
+
+\begin{equation}
+    x = i \hslash \frac{d}{dp} 
+\end{equation}
+
+donde se tomará la constante $\hslash = 1$.Entonces, los polinomios $V_1(x)$ y $V_2(x)$ tienen como operadores:  
+
+\begin{equation}
+    \hat{V_1} = a_o + a_1 i \frac{d}{dp} - a_2 \frac{d^2}{dp^2} - a_3 i \frac{d^3}{dp^3} + a_4\frac{d^4}{dp^4} 
+\end{equation}
+
+\begin{equation}
+    \hat{V_2} = b_o + b_1 i \frac{d}{dp} - b_2 \frac{d^2}{dp^2} - b_3 i \frac{d^3}{dp^3} + b_4\frac{d^4}{dp^4} 
+\end{equation}
+
+Las fórmulas recursivas de Floquet-Magnus permiten hallar el Hamiltoniano efectivo para cada $V_1(x)$ y $V_2(x)$ que se quiera estudiar. 
+
+\begin{equation}
+    G^{(k)}=\frac{1}{T}\int^{T}_{0}\{ H(t')P^{(k-1)}(t')-\sum^{k-1}_{j=1} P^{(j)}G^{(k-j)}\}dt'
+\end{equation}
+
+Donde $T=2\pi/\omega$,es el periodo de la fuerza externa.
+
+\begin{equation}
+    P^{(k)}=-i\int^{t}_{0}\{ H(t')P^{(k-1)}(t')-\sum^{k-1}_{j=1} P^{(j)}G^{(k-j)}-G^{(k)}\}dt'
+\end{equation}
+
+Y por definición 
+
+\begin{equation}
+    \begin{cases}
+        G^{(0)}=0\\
+        P^{(0)}=1
+    \end{cases}
+\end{equation}
+
+\begin{equation}
+\begin{cases}
+    G=\sum G^{(k)}\\
+    P=\sum P^{(k)}
+    \end{cases}
+\end{equation}
+
+\section{Uso del programa}
+
+Se usará el programa desarrollado en Mathematica para reproducir resultados del Paper Martinez et al (2017)\cite{martinez2017}.  El Hamiltiniano tiene la forma siguiente,
+
+\begin{equation}
+    H(x,t)=-2A\cos(ap)+\epsilon x \cos(\omega t)
+\end{equation}
+
+\begin{itemize}
+    \item Primero \textbf{se borra la memoria del kernel} para limpiar cualquier variable que se tenga cargada en la memoria del programa.
+
+\begin{lstlisting}[language=Mathematica]
+ ClearAll["Global`*"]
+\end{lstlisting}
+
+\item Se definen los coeficientes de $V_1(x)$ y $V_2(x)$ 
+
+\begin{lstlisting}[language=Mathematica]
+a0=0;
+a1=0;
+a2=0;
+a3=0;
+a4=0;
+\end{lstlisting}
+
+\begin{lstlisting}[language=Mathematica]
+b0=0;
+b1=eps;
+b2=0;
+b3=0;
+b4=0;
+\end{lstlisting}
+
+ \item Se escriben $V_1(x)$ y $V_2(x)$ como funciones en Mathematica que trabajan como operadores $\hat{V_1}$ y $\hat{V_2}$ sobre cualquier función de $\rho$
+
+\begin{lstlisting}[language=Mathematica]
+V1[x_]:=a0+I*a1*D[x,{p,1}]-a2*D[x,{p,2}]-a3*I*D[x,{p,3}]+
+a4*D[x,{p,4}]
+\end{lstlisting}
+
+\begin{lstlisting}[language=Mathematica]
+V2[x_]:= b0+b1*I  D[x,{p,1}]-b2*D[x,{p,2}]-b3*I*D[x,{p,3}]+
+b4*D[x,{p,4}]
+\end{lstlisting}
+
+\item Haciendo uso de estos operadores, se definen los operadores $H_o$,$H_1$ y $H$
+
+\begin{lstlisting}[language=Mathematica]
+Ho[x_]:=-2A Cos[a p]x+V1[x]  
+H1[x_]:=V2[x]*Cos[ w t ]
+H[x_]:=Ho[x]+H1[x]
+\end{lstlisting}
+
+\item Siguiendo las formulas recursivas de Floquet-Magnus se calculará con la ayuda de Mathematica los valores de $G^{(k)}$ hasta $k=5$
+
+
+\begin{enumerate}
+
+    \item \textbf{Cálculo de $G^{(0)}$ y $P^{(0)}$}
+    
+$G^{(0)}$ y $P^{(0)}$ se conocen a priori por lo que solo los definiremos en el entorno de trabajo de Mathematica,con la salvedad que estos deben definirse ccomo operadores.
+    
+\begin{equation}
+    \begin{cases}
+        G^{(0)}=0\\
+        P^{(0)}=1
+    \end{cases}
+\end{equation}
+
+\begin{lstlisting}[language=Mathematica]
+G0[x_]:=0 ;
+P0[x_]:=x ;
+\end{lstlisting}
+
+\item \textbf{Cálculo de $G^{(1)}$ y $P{(1)}$}
+
+Usando la formula recursiva de Floquet-Magnus se tiene 
+
+\begin{equation}
+    G^{(1)}=\frac{1}{T}\int^{T}_{(0)} H(t')P^{(0)}dt'
+\end{equation}
+
+\begin{equation}
+    P^{(1)}=-i\int^{t}_{(0)} H(t')P^{(0)}(t')-G^{(1)}dt'
+\end{equation}
+
+\begin{lstlisting}[language=Mathematica]
+G1[x_]:=(w/(2Pi)) Integrate[ H@P0[x],{ t ,0, 2Pi/w } ]
+P1[x_]:=-I Integrate[H@P0[x]-G1[x],{t,0,t}]
+\end{lstlisting}
+
+Se aplicaran los operadores $G^{(1)}$ y $P^{(1)}$ sobre una funcion arbitraria $f(p)$
+
+\begin{lstlisting}
+G1[f[p]]
+P1[f[p]]
+\end{lstlisting}
+
+Obteniendo asi los resultados 
+\begin{equation}
+    G^{(1)}=-2A\cos(ap)=H_o
+\end{equation}
+
+\begin{equation}
+    P^{(1)}=\frac{\epsilon\sin(\omega t)}{\omega}\mathbb{I}
+\end{equation}
+
+Este algoritmo se repetirá para cada $k$ hasta $k=5$ definiendo $G^{(k)}$ y $P^{(k)}$ apropiados para cada caso de acuerdo a la expansión de Floquet-Magnus.
+
+\item \textbf{Cálculo de $G_2$ y $P_2$}
+
+\begin{equation}
+    G^{(2)}=\frac{1}{T}\int^{T}_{0} H(t')P^{1}(t')- P^{1}G^{1}dt'
+\end{equation}
+
+\begin{equation}
+    P^{(2)}=-i\int^{t}_{0}\{ H(t')P^{1}(t')- P^{1}G^{1}-G^{2}\}dt'
+\end{equation}
+
+\begin{lstlisting}[language=Mathematica]
+G2[x_]:=(w/(2Pi))* Integrate[H@P1[x]-P1@G1[x],{t,0,2Pi/w}]
+\end{lstlisting}
+
+\begin{lstlisting}[language=Mathematica]
+P2[x_]:= -I* Integrate[H@P1[x]-P1@G1[x]-G2[x],{t,0,t}]
+\end{lstlisting}
+
+
+
+\begin{lstlisting}[language=Mathematica]
+G2[f[p]]
+0
+P2[f[p]]
+(1/(w^2))eps Sin[(t w)/2]^2 (4 I a A f[p] Sin[a p]+
+eps (1+Cos[t w]) f''[p])
+\end{lstlisting}
+
+\begin{equation}
+    G^{2}=0
+\end{equation}
+
+\begin{equation}
+    P^{(2)}=\frac{\epsilon\sin^2(\frac{t\omega}{2})}{\omega^2}[4iaA\sin(ap)\mathbb{I}+2\epsilon\cos^2(\frac{t\omega}{2})\frac{\partial^2}{\partial p^2}]
+\end{equation}
+
+\item \textbf{Cálculo de $G_3$ y $P_3$}
+
+\begin{equation}
+    G^{3}=\frac{1}{T}\int^{T}_{0}\{ H(t')P^{2}(t')- P^{1}G^{2}-P^{2}G^{1}\}dt'
+\end{equation}
+
+\begin{equation}
+    P^{(3)}=-i\int^{t}_{0}\{ H(t')P^{2}(t')- P^{1}G^{2}-P^{2}G^{1}-G^{3}\}dt'
+\end{equation}
+
+\begin{lstlisting}[language=Mathematica]
+G3[x_]:=(w/(2Pi))*(Integrate[ H@P2[x]-P1@G2[x]-P2@G1[x],
+{t,0,2Pi/w}])
+\end{lstlisting}
+
+\begin{lstlisting}
+P3[x_]:=-I*(Integrate[ H@P2[x]-P1@G2[x]-P2@G1[x]-G3[x],
+{t,0,t}]) 
+\end{lstlisting}
+
+\begin{equation}
+    G^{(3)}=\frac{a^2A\epsilon^2\cos(ap)}{2\omega^2}\mathbb{I}
+\end{equation}
+
+\begin{equation}
+         \begin{split}         P^{(3)}=&\frac{\epsilon^2}{12\omega^3}[3ia^2A(8\sin(\omega t)-3\sin(2\omega t))\cos(ap)\mathbb{I} +\\&+48iaA\sin^2(\frac{\omega t}{2})\sin(\omega t)\sin(ap)\frac{\partial}{\partial p}+\\&+ 2i\epsilon\sin^3(\omega t)\frac{\partial^3}{\partial p^3}]
+    \end{split}
+\end{equation}
+
+\item \textbf{Cálculo de $G_4$ y $P_4$}
+
+\begin{equation}
+    G^{(4)}=\frac{1}{T}\int^{T}_{0}\{ H(t')P^{3}(t')- P^{1}G^{3}- P^{2}G^{2}- P^{3}G^{1}\}dt'
+\end{equation}
+
+\begin{equation}
+    P^{(4)}=-i\int^{t}_{0}\{ H(t')P^{3}(t')- P^{1}G^{3}-P^{2}G^{2}-P^{3}G^{1}-G^{4}\}dt'
+\end{equation}
+
+\begin{lstlisting}[language=Mathematica]
+G4[x_]:=(w/(2Pi))*(Integrate[ H@P3[x]-P1@G3[x]-P2@G2[x]-
+P3@G1[x],{t,0,2Pi/w}])
+\end{lstlisting}
+
+\begin{lstlisting}[language=Mathematica]
+P4[x_]:=-I*(Integrate[ H@P3[x]-P1@G3[x]-P2@G2[x]-P3@G1[x]-
+G4[x],{t,0,t}]) 
+\end{lstlisting}
+
+\begin{lstlisting}
+G4[f[p]]
+P4[f[p]]
+\end{lstlisting}
+
+
+\begin{equation}
+\begin{aligned}
+        &P^{(4)}=\frac{\epsilon^2 \sin ^2\left(\frac{t \omega}{2}\right)}{36 \omega^4} (6 \epsilon^2  \sin ^2(t\omega) \cos^2 \left(\frac{t \omega}{2}\right)\frac{\partial^4}{\partial p^4}-\\&-72 i a^2 A \epsilon  \cos (a p) \cos
+   ^2\left(\frac{t \omega}{2}\right) (3 \cos (t \omega)-4)\frac{\partial}{\partial p}+\\&+72 i a A \epsilon \sin (a p) \sin ^2(t \omega)\frac{\partial^2}{\partial p^2}-\\&-2 i a^2 A \sin (a p) (a \epsilon (14 \cos (t w)-11 \cos (2 t \omega)+33)+\\&+72 i A \sin (a p) (\cos
+   (t \omega)-1))\mathbb{I})
+    \end{aligned}
+\end{equation}
+
+\begin{equation}
+    G^{(4)}=0
+\end{equation}
+
+\item \textbf{Cálculo de $G_5$ y $P_5$}
+
+\begin{equation}
+    G^{(5)}=\frac{1}{T}\int^{T}_{0}\{ H(t')P^{4}(t')- P^{1}G^{4}- P^{2}G^{3}- P^{3}G^{2}-P^{4}G^{1}\}dt'
+\end{equation}
+
+\begin{lstlisting}[language=Mathematica]
+G5[x_]:=(w/(2Pi))*(Integrate[ H@P4[x]-P1@G4[x]-P2@G3[x]-
+P3@G2[x]-P4@G1[x],{t,0,2Pi/w}])
+G5[f[p]]
+\end{lstlisting}
+
+
+\begin{equation}
+    G^{(5)}=-\frac{a^4 A \epsilon^4\cos(a p)}{32 \omega^4}\mathbb{I}
+\end{equation}
+
+\end{enumerate}
+
+\end{itemize}
+

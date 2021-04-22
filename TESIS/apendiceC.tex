@@ -1,0 +1,87 @@
+\chapter{Obtención de la formula recursiva de Floquet-Magnus}\label{apendice:C}
+
+Usando las definiciones expuestas en el capítulo \ref{cap:8}, se seguirá el procedimiento expuesto por Maricq en 1982 \cite{maricq} para obtener la formula recursiva de Floquet-Magnus.
+
+Se substituye \ref{eq:8.3} en \ref{eq:8.1} y se obtiene:
+
+\begin{equation}\label{eq:D.1}
+    \frac{dP(t)}{dt}=-iH(t)P(t)+iP(t)\overline{H}
+\end{equation}
+
+Se hace además la sustitución $H(t)  \rightarrow \lambda H(t)$ y se introducen las ecuaciones \ref{eq:8.4} y \ref{eq:8.5} en \ref{eq:8.6}, separando las ecuaciones por orden de lambda.
+
+\begin{equation}\label{eq:D.2}
+    \sum^{\infty}_{n=0}\lambda^n\frac{dP_n(t)}{dt}=-i\lambda H(t)\sum^{\infty}_{n=0}\lambda^nP_n(t)+i\sum^{\infty}_{k=0}\lambda^kP_k(t)\sum^{\infty}_{m=0}\lambda^m\overline{H_m}
+\end{equation}
+
+A orden de $\lambda^n$
+
+\begin{equation}\label{eq:D.3}
+    \lambda^n\frac{dP_n(t)}{dt}=-i H(t)\sum^{\infty}_{n=0}\lambda^{n+1}P_n(t)+i\sum^{\infty}_{k=0}\sum^{\infty}_{m=0}\lambda^{k+m}P_k(t)\overline{H_m}
+\end{equation}
+
+Se hacen los cambios $n'=n+1$, $n=k+m$
+
+\begin{equation}\label{eq:D.4}
+    \lambda^n\frac{dP_n(t)}{dt}=-i\left[ H(t)\lambda^{n'}P_{n'-1}(t)-\sum^{n}_{k=0}\lambda^{n}P_k(t)\overline{H_{n-k}}\right]
+\end{equation}
+
+Haciendo $\lambda=1$ y $n'=n$ se obtiene sin pérdida de generalidad
+
+\begin{equation}\label{eq:D.5}
+    \frac{dP_n(t)}{dt}=-i\left[ H(t)P_{n-1}(t)-\sum^{n-1}_{k=1}P_k(t)\overline{H_{n-k}}-P_{0}(t)\overline{H_n}-P_n(t)H_0(t)\right]
+\end{equation}
+
+\begin{equation}\label{eq:D.6}
+    \frac{dP_n(t)}{dt}=-i\left[ H(t)P_{n-1}(t)-\sum^{n-1}_{k=1}P_k(t)\overline{H_{n-k}}-\overline{H_n}\right]
+\end{equation}
+
+Integrando a ambos lados de la ecuación se obtiene: 
+
+\begin{equation}\label{eq:D.7}
+    P_n(t)=-i\int^{t}_{0}\left[ H(t')P_{n-1}(t')-\sum^{n-1}_{k=1}P_k(t')\overline{H}_{n-k}-\overline{H}_n\right]
+\end{equation}
+
+Se integra ahora la ecuación \ref{eq:D.7} de en un periodo $\tau$:
+
+\begin{equation}\label{eq:D.8}
+    \int^{\tau}_{0}\frac{dP_n(t)}{dt}=-i\int^{\tau}_{0}\left[ H(t)P_{n-1}(t')-\sum^{n-1}_{k=1}P_k(t')\overline{H_{n-k}}-\overline{H_n}\right]
+\end{equation}
+
+Resolviendo \ref{eq:D.8} se puede despejar $\overline{H_n}$:
+
+\begin{equation}\label{eq:D.9}
+    P_n(\tau)-P_n(0)=-i\int^{\tau}_{0}\left[ H(t)P_{n-1}(t')-\sum^{n-1}_{k=1}P_k(t')\overline{H_{n-k}}\right]-\overline{H_n}\tau
+\end{equation}
+
+Apelando a la periodicidad de $P_n(t)$ el lado izquierdo de la ecuación se anula por lo que se obtiene el siguiente resultado para $\overline{H_n}$
+
+\begin{equation}\label{eq:D.10}
+    \overline{H_n}=\frac{-i}{\tau}\int^{\tau}_{0}\left[ H(t)P_{n-1}(t')-\sum^{n-1}_{k=1}P_k(t')\overline{H_{n-k}}\right]
+\end{equation}
+
+\section{Convergencia de las series}
+
+La integración consecutiva de $H(t)$, junto con su condición de estar acotado nos ayudará a determinar la convergencia de $U(t)$ y en consecuencia la convergencia de la expansión de Floquet-Magnus.
+
+\begin{equation}\label{eq:D.11}
+   \int^{t}_0 H(t)dt \leq \int^{t}_0 dt = t
+\end{equation}
+
+\begin{equation}\label{eq:D.12}
+    \int^{t}_0H(t_k)\dots \int^{t}_0H(t_1)dt_1 \dots dt_k \leq \frac{t^k}{k!}
+\end{equation}
+
+Un procedimiento análogo (para la cota inferior -1)  deja el resultado:
+
+\begin{equation}\label{eq:D.13}
+    -\frac{t^k}{k!} \leq \int^{t}_0H(t_k)\dots \int^{t}_0H(t_1)dt_1 \dots dt_k
+\end{equation}
+
+Por lo tanto $U_k-U_{k-1}$ tendrá la siguiente forma:
+
+\begin{equation}\label{eq:D.14}
+    \norm{U_k-U_{k-1}}\leq \frac{\lambda^kt^k}{k!}
+\end{equation}
+
+Se encuentra entonces que a medida que $k$ crece el error disminuye drásticamente, y en consecuencia $U_k$ converge. Por ende, $e^{-i\overline{H}\tau}$ debe converger, entonces $\overline{H}$ converge. En consecuencia la solución de Floquet  $U(t)=P(t)e^{-i\overline{H}t}$ converge. 

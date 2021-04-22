@@ -1,0 +1,464 @@
+\chapter{Solución de las ecuaciones de Mathieu}\label{apendice:E}
+
+En este apéndice se mostrará el procedimiento detallado para la obtención de las condiciones para que la solución a la ecuación de Mathieu sea la no trivial.
+
+Como ya se dijo en capitulo \ref{cap:4}, en general de la ecuación de Mathieu tiene la forma:
+
+\begin{equation}\label{eq:E.1}
+    \frac{\partial^2u}{\partial Z^2}+\left(\theta_0+2\theta_1\cos(2Z)\right)u=0
+\end{equation}
+
+Con solución 
+
+\begin{equation}\label{eq:E.2}
+    u=e^{i\lambda z}\sum^{\infty}_{n=-\infty} b_n e^{2inz}
+\end{equation}
+
+Escribiremos el $\cos(2Z)$ en su forma exponencial
+
+\begin{equation}\label{eq:E.3}
+    \cos(2Z)=\frac{e^{2iZ}+e^{-2iZ}}{2}
+\end{equation}
+
+Sustituiremos la solución \ref{eq:E.2} en la \textit{Ecuación Diferencial de Mathieu} \ref{eq:E.1} 
+
+\begin{equation}\label{eq:E.4}
+    \sum^{\infty}_{n=-\infty} b_n\left(-(\lambda+2n)^2+\theta_0\right)e^{i\left(\lambda+2n\right) Z}+\theta_1\left( b_ne^{i\left(\lambda+2n+2\right)Z}+b_ne^{i\left(\lambda+2n-2\right)Z}\right)=0
+\end{equation}
+
+sustituyamos $m=n+1$ y $l=n-1$
+
+\begin{equation}\label{eq:E.5}
+    \sum^{\infty}_{n=-\infty} b_n\left(\theta_0-\left(\lambda+2n\right)^2\right)e^{i\left(\lambda+2n\right) Z}+\theta_1\left( \sum^{\infty}_{m=-\infty}b_{m-1}e^{i\left(\lambda+2m\right)Z}+\sum^{\infty}_{l=-\infty}b_{l+1}e^{i\left(\lambda+2l\right)Z}\right)=0
+\end{equation}
+
+No hay pérdida de la generalidad si devolvemos el cambio haciendo $n=m=l$ en la sumas; obteniendo:
+
+\begin{equation}\label{eq:E.6}
+    \sum^{\infty}_{n=-\infty} b_n\left(-(\lambda+2n)^2+\theta_0\right)e^{i(\lambda+2n) Z}+\theta_1( b_{n-1}e^{i(\lambda+2n)Z}+b_{n+1}e^{i(\lambda+2n)Z})=0
+\end{equation}
+
+El factor $e^{i(\lambda+2n)Z}$ nunca será cero, podemos descartarlo de forma inmediata. Obteniendo de esta manera un sistema de ecuaciones lineales para los $b_n$ de la solución dada para la ecuación de Mathieu; Es menester obtener los valores de estos $b_n$.
+
+\begin{equation}\label{eq:E.7}
+    \sum^{\infty}_{n=-\infty} b_n\left(-(\lambda+2n)^2+\theta_0\right) +\theta_1( b_{n-1}+b_{n+1})=0
+\end{equation}
+
+Se observa que cuando $n \rightarrow \infty$ la suma tiende a infinito, este es un sistema inestable. Esto es análogo a tener un polo de segundo orden\cite{Phelps}, para evitar este problema, dividiremos por $\theta_0-4n^2$
+
+\begin{equation}\label{eq:E.8}
+    \sum^{\infty}_{n=-\infty} \frac{b_n\left(-(\lambda+2n)^2+\theta_0\right)}{\theta_0-4n^2}+\frac{\theta_1b_{n-1}}{\theta_0-4n^2}+\frac{\theta_1b_{n+1}}{\theta_0-4n^2}=0
+\end{equation}
+
+Como $n$ toma valores discretos de $-\infty$ a $\infty$, se tiene el problema de resolver un sistema de ecuaciones homogéneo de dimensión infinita.
+
+Se puede escribir el sistema de ecuaciones como una matriz cuadrada infinita de la forma siguiente:
+
+\large
+\begin{equation}\label{eq:E.9}
+A=
+\begin{pmatrix}
+\ddots &  \vdots & \vdots & \vdots &\iddots \\
+\dots &  \frac{\theta_1}{\theta_o-16} & 0 & 0 & \dots \\[0.3cm]
+\dots  & \frac{\theta_o-(\lambda-2)^2}{\theta_o-4} & \frac{\theta_1}{\theta_o-4} & 0 & \dots\\[0.3cm] 
+\dots & \frac{\theta_1}{\theta_o} & \frac{\theta_o-\lambda^2}{\theta_o} & \frac{\theta_1}{\theta_o} & \dots \\[0.3cm]
+\ldots & 0 & \frac{\theta_1}{\theta_o-4} & \frac{\theta_o-(\lambda+2)^2}{\theta_o-4} & \dots\\[0.3cm]
+\ldots & 0 & 0 & \frac{\theta_1}{\theta_o-16} & \dots \\
+\iddots & \vdots & \vdots  & \vdots &\ddots \\
+\end{pmatrix}
+=\begin{pmatrix}
+\vdots\\
+0\\[0.3cm]
+0\\[0.3cm]
+0\\[0.3cm]
+0\\[0.3cm]
+0\\
+\vdots
+\end{pmatrix}
+\end{equation}
+\normalsize
+
+Si el determinante de este sistema es distinto de cero, las ecuaciones son linealmente independientes y se puede reducir el sistema a una matriz diagonal; por ende la solución será la trivial y todos los $b_n$ tendrán solución $b_n$=$0$ $\forall$ $n$.
+
+Se busca una solución no trivial al sistema, por lo que supondremos que el determinante de la matriz es igual a cero.
+
+\large
+\begin{equation}\label{eq:E.10}
+\Delta(\lambda)=
+\begin{vmatrix}
+\ddots  & \vdots & \vdots & \vdots & \iddots \\
+\dots &  \frac{\theta_1}{\theta_o-16} & 0 & 0 & \dots \\[0.3cm]
+\dots & \frac{\theta_o-(\lambda-2)^2}{\theta_o-4} & \frac{\theta_1}{\theta_o-4} & 0 & \dots\\[0.3cm] 
+\dots & \frac{\theta_1}{\theta_o} & \frac{\theta_o-\lambda^2}{\theta_o} & \frac{\theta_1}{\theta_o} & \dots \\[0.3cm]
+\ldots & 0 & \frac{\theta_1}{\theta_o-4} & \frac{\theta_o-(\lambda+2)^2}{\theta_o-4}  &  \dots\\[0.3cm] 
+\ldots & 0 & 0 & \frac{\theta_1}{\theta_o-16} &  \dots \\
+\iddots &  \vdots & \vdots & \vdots  &\ddots \\
+\end{vmatrix}=0
+\end{equation}
+\normalsize
+
+Se multiplicará la matriz $A$ por la matriz diagonal $D$, cuya forma es la siguiente:
+
+\large
+\begin{equation}\label{eq:E.11}
+D= \begin{pmatrix}
+\ddots & \vdots & \vdots & \vdots & \iddots \\
+\dots & \frac{\theta_o-4}{\theta_o-(\lambda-2)^2} &0 & 0 & \dots \\[0.3cm] 
+\dots & 0 & \frac{\theta_o}{\theta_o-\lambda^2} & 0 & \dots \\[0.3cm]
+ \dots & 0 & 0 & \frac{\theta_o-4}{\theta_o-(\lambda+2)^2} & \dots \\[0.3cm]
+ \iddots & \vdots & \vdots & \vdots& \ddots
+\end{pmatrix}
+\end{equation}
+\normalsize
+
+Definimos una nueva matriz $\Delta(\lambda){i}$ cuyo valor es
+
+\begin{equation}\label{eq:E.12}
+    \Delta(\lambda){i}=A*D
+\end{equation}
+
+Multiplicando $A$ por $D$ obtenemos
+
+\large
+\begin{equation}\label{eq:E.13}
+\Delta(\lambda){i}= 
+\begin{pmatrix}
+\ddots & \vdots & \vdots & \vdots & \iddots \\
+\dots & 1 & \frac{\theta_1}{\theta_o-(\lambda-2)^2} & 0 & \dots \\ 
+\dots  & \frac{\theta_1}{\theta_o-\lambda^2} & 1 & \frac{\theta_1}{\theta_o-\lambda^2} &\dots\\
+ \dots  & 0 & \frac{\theta_1}{\theta_o- (2+\lambda)^2} & 1 & \dots\\ 
+ \iddots & \vdots & \vdots & \vdots & \ddots
+\end{pmatrix}
+\end{equation}
+\normalsize 
+
+\begin{teo}
+ Sean A y B dos matrices $n\times n$ arbitrarias, entonces $det(A*B)=det(a)*det(B)$\cite{jacob}
+\end{teo}
+
+\begin{equation}\label{eq:E.14}
+B=AD \Rightarrow \det B= \det A \det D
+\end{equation}
+
+Tenemos entonces que la matriz $\Delta(\lambda){i}$ está definida como
+
+\begin{equation}\label{eq:E.15}
+\Delta(\lambda){i}=\det D *\Delta(\lambda)
+\end{equation}
+
+Es inmediato que el determínate de una matriz diagonal es igual a la multiplicación de los elementos de su diagonal, por ende 
+
+\begin{equation}\label{eq:E.16}
+   \det D= \prod_{n=-\infty}^{n=\infty} \frac{\theta_o-4n^2}{\theta_o-(2n+\lambda)^2}
+\end{equation}
+
+Sultituyendo \ref{eq:E.16} en \ref{eq:E.15}
+
+\begin{equation}\label{eq:E.17}
+\Delta(\lambda)_{i} = \prod_{n=-\infty}^{n=\infty} \frac{\theta_o-4n^2}{\theta_o-(2n+\lambda)^2} \Delta(\lambda)
+\end{equation}
+
+Se despeja $\Delta(\lambda)$ para obtener
+
+\begin{equation}\label{eq:E.18}
+\begin{aligned}
+\Delta(\lambda) & =\Delta(\lambda)_{i} \prod_{n=-\infty}^{n=\infty} \frac{\theta_o-(2n+\lambda)^2}{\theta_o-4n^2} \\
+& = \Delta(\lambda)_{i} \prod_{n=-\infty}^{n=\infty} \frac{[\theta_o^{1/2}-(2n+\lambda)][\theta_o^{1/2}+(2n+\lambda)]}{\theta_o-4n^2} 
+\end{aligned}
+\end{equation}
+
+Se separan las multiplicaciones para $n=0$, $n$ negativo y $n$ positivo
+
+\begin{equation}\label{eq:E.19}
+    \begin{aligned}
+    \Delta(\lambda) &=\Delta(\lambda)_{i} \frac{\theta_o-\lambda^2}{\theta_o}\prod_{n=-1}^{n=-\infty} \frac{[\theta_o^{1/2}-(2n+\lambda)][\theta_o^{1/2}+(2n+\lambda)]}{\theta_o-4n^2}\prod_{n=1}^{n=\infty} \frac{[\theta_o^{1/2}-(2n+\lambda)][\theta_o^{1/2}+(2n+\lambda)]}{\theta_o-4n^2}\\
+    &=\Delta(\lambda)_{i} \frac{\theta_o-\lambda^2}{\theta_o}\prod_{n=1}^{n=\infty} \frac{[(\theta_o^{1/2}-\lambda)+2n][(\theta_o^{1/2}+\lambda)-2n]}{\theta_o-4n^2} \frac{[(\theta_o^{1/2}-\lambda)-2n][(\theta_o^{1/2}+\lambda)+2n]}{\theta_o-4n^2}\\
+    &=\Delta(\lambda)_{i} \frac{\theta_o-\lambda^2}{\theta_o}\prod_{n=1}^{n=\infty} \frac{[(\theta_o^{1/2}-\lambda)^2-(2n)^2][(\theta_o^{1/2}+\lambda)^2-(2n)^2]}{(\theta_o-4n^2)^2}
+    \end{aligned}
+\end{equation}
+
+
+Dividiendo y multiplicando por $(2n)^2$
+
+\begin{equation}\label{eq:E.20}
+\begin{aligned}
+\Delta(\lambda) & =\Delta(\lambda)_{i} \frac{\theta_o-\lambda^2}{\theta_o}\prod_{n=1}^{n=\infty} [1-(\frac{\theta_o^{1/2}-\lambda}{2n})^2][1-(\frac{\theta_o^{1/2}+\lambda}{2n})^2]\frac{1}{(1-(\frac{\theta_o^{1/2}}{2n})^2)^2}
+\end{aligned}
+\end{equation}
+
+De la teoría de variable compleja, se sabe que $\frac{\sin(z)}{z}$  satisface la siguiente igualdad \cite{Philip}
+
+\large
+\begin{equation}\label{eq:E.21}
+\frac{\sin(z)}{z} = \prod_{n=1}^{\infty} 1-(\frac{z}{n \pi})^2
+\end{equation}
+\normalsize
+
+Y haciendo los cambios
+
+\Large
+\begin{equation}\label{eq:E.22}
+\begin{cases}
+\frac{z_1}{n\pi}=\frac{\theta_o^{1/2}-\lambda}{2n}\\
+\frac{z_2}{n\pi}=\frac{\theta_o^{1/2}+\lambda}{2n}\\
+\frac{z_3}{n\pi}= \frac{\theta_o^{1/2}}{2n}
+\end{cases}
+\end{equation}
+\normalsize
+
+ Queda que el determinante que se busca tiene la forma 
+
+ \begin{equation}\label{eq:E.23}
+ \Delta(\lambda)= \Delta(\lambda)_{i}\frac{ \theta_o-\lambda^2}{\theta_o}\frac{\frac{\sin(\frac{\pi}{2}(\theta_o^{1/2}-\lambda))}{\frac{\pi}{2}( \theta_o^{1/2}-\lambda)}\frac{\sin(\frac{\pi}{2}( \theta_o^{1/2}+\lambda))}{\frac{\pi}{2}( \theta_o^{1/2}+\lambda)}}{\frac{\sin^2(\frac{\pi}{2}\theta_o^{1/2})}{(\frac{\pi}{2}\theta_o^{1/2})^2}}
+ \end{equation}
+
+ 
+Haciendo simplificaciones obtenemos 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ \begin{equation}\label{eq:2.20}
+ \Delta(\lambda)= -\Delta(\lambda)_{i}\frac{\sin(\frac{\pi}{2}(\lambda-\theta_o^{1/2}))\sin(\frac{\pi}{2}( \lambda+\theta_o^{1/2}))}{\sin^2(\frac{\pi}{2}\theta_o^{1/2})}
+\end{equation}
+\normalsize
+
+Con $\Delta(\lambda)_i$ definida como: 
+
+\begin{equation}\label{eq:2.21}
+\Delta(\lambda)_{i} = \prod_{n=-\infty}^{n=\infty} \frac{\theta_o-4n^2}{\theta_o-(2n+\lambda)^2} \Delta(\lambda)
+\end{equation}
+
+Siguiendo la teoría de variable compleja, encontramos la siguiente definición:
+
+\begin{defi}{\textbf{Función Meromórfica}}\label{def:1}
+Se dice que una función $f(z)$ es Meromórfica en una región, cuando todas sus singularidades $a_n$ en esa región son polos.
+Una función que es Meromórfica puede expandirse en serie de fracciones parciales tal como cualquier otra función racional pudiera hacerlo. Pero lo haremos de manera que cada sumando contenga un solo polo\cite{Philip} (ecuación \ref{eq:2.22}).
+
+\begin{equation}\label{eq:2.22}
+    f(z)=\sum \frac{c_n}{z-a_n}
+\end{equation}
+\end{defi}
+
+Si se toma un círculo de radio R finito alrededor del origen, dentro del cual se encuentran $p$ polos, y $f(z)$ no tiene polos en la frontera del círculo ni el origen, se puede definir una función analítica cuya expresión es:
+
+\begin{equation}\label{eq:2.23}
+    g_p(z)=f(z)-\sum^{p}_1 \frac{c_n}{z-a_n}
+\end{equation}
+
+Si se hace crecer el círculo cada vez más, haciendo $R \rightarrow \infty$ la región en la cual $g_p(z)$ es analítica crece.\\
+Si existe $M_p$ tal que $\abs{f(z)}\leq M_p$ en la frontera del círculo (recordemos que ningún polo se encuentra en la frontera), y que $M_p$ esta acotada para todo radio. Decimos que $g_p(z)$ está acotada por $M_p$.
+
+\begin{teo}\label{Teo:6}
+ Una función que es analítica para todos los valores finitos de z y está acotada en todas partes es una constante.\cite{Philip}
+\end{teo}
+
+\begin{equation}\label{eq:2.24}
+  \abs{g_p(z)} \leq M_p  
+\end{equation}
+
+
+Se encuentra que $g_p(z)=C$, con C constante y que se cumple la siguiente relación:
+
+\begin{equation}\label{eq:2.25}
+    f(z)=C+\sum^{\infty}_1 \frac{c_n}{z-a_n}
+\end{equation}
+
+Tomando en cuenta el teorema \ref{Teo:6} y la definición \ref{def:1}, se nota que el determinante $\Delta(\lambda)_i$ (\ref{eq:2.21}) tendrá infinitas singularidades que son todas polos, que se alejan cada vez mas del origen. Además, es una función analítica, tal como se ha descrito, por lo que se puede encontrar una constante $C$  tal que:
+ 
+ \begin{equation}\label{eq:E.25}
+ \begin{aligned}
+ C=&\Delta(\lambda)_{i}-\sum^{\infty}_{-\infty} \frac{c_n}{\theta_o-(2n+\lambda)^2}\\
+  &=\Delta(\lambda)_{i}-\sum^{\infty}_{-\infty} \frac{c_n}{\theta_o-(2n+\lambda)^2}\\
+  &=\Delta(\lambda)_{i}-\sum^{\infty}_{-\infty} \frac{c_n}{\theta_o^{1/2}+2n+\lambda}+\frac{d_n}{\theta_o^{1/2}-2n-\lambda}
+ \end{aligned}
+ \end{equation}
+ 
+
+
+Se puede calcular gracias a teoría de variable compleja que 
+
+\begin{equation}\label{eq:A.26}
+\begin{aligned}
+\cot(z)&=\frac{d\log(\sin(z))}{dz}\\
+&=\frac{d}{dz}\log(z \prod_{n=1}^{\infty} 1-(\frac{z}{n \pi})^2)\\
+&=\frac{d}{dz}(\log(z)+\sum^{\infty}_{1}\log(1-(\frac{z}{n \pi})^2)))\\
+&=\frac{1}{z}+\sum^{\infty}_{1}\frac{2z}{z^2-(n\pi)^2}\\
+&=\frac{1}{z}+\sum^{\infty}_{1}\frac{2z}{(z-\pi n)(z+\pi n)}\\
+&=\frac{1}{z}+\sum^{\infty}_{1}\frac{1}{(z-\pi n)}+\frac{1}{(z+\pi n)}\\
+&=\sum^{\infty}_{-\infty}\frac{1}{(z+\pi n)}
+\end{aligned}
+\end{equation}
+
+Por lo tanto 
+
+\begin{equation}\label{eq:E.27}
+    \cot(z)=\sum^{\infty}_{-\infty}\frac{1}{(z+\pi n)}
+\end{equation}
+
+haciendo la siguientes sustituciones en \ref{eq:E.27}
+
+\begin{equation}\label{eq:E.28}
+\begin{aligned}
+&z_1=\pi \frac{\theta_o^{1/2}+\lambda}{2}\\
+&z_2=\pi \frac{\theta_o^{1/2}-\lambda}{2}
+\end{aligned}
+\end{equation}
+
+Nos queda
+
+ \begin{equation}\label{eq:E.29}
+     C=\Delta(\lambda)_{i}-K\left[\cot(\frac{\pi}{2}(\lambda+\theta_o^{1/2}))-\cot(\frac{\pi}{2}(\lambda-\theta_o^{1/2}))\right]
+ \end{equation}
+
+\begin{equation}\label{eq:E.30}
+     \Delta(\lambda)_{i}=C+K[\cot(\frac{\pi}{2}(\lambda+\theta_o^{1/2}))-\cot(\frac{\pi}{2}(\lambda-\theta_o^{1/2}))]
+ \end{equation}
+ 
+ Cuando $\lambda$ tiende a infinito el determinante $\Delta(\lambda)_{i}$ tiende a 1
+ 
+ \large
+\begin{equation}\label{eq:E.31}
+\lim_{\lambda\rightarrow \infty}\Delta(\lambda){i}=\lim_{\lambda\rightarrow\infty} 
+\begin{pmatrix}
+\ddots & \vdots & \vdots & \vdots & \iddots \\
+\dots & 1 & \frac{\theta_1}{\theta_o-(\lambda-2)^2} & 0 & \dots \\ 
+\dots  & \frac{\theta_1}{\theta_o-\lambda^2} & 1 & \frac{\theta_1}{\theta_o-\lambda^2} &\dots\\
+ \dots  & 0 & \frac{\theta_1}{\theta_o- (2+\lambda)^2} & 1 & \dots\\ 
+ \iddots & \vdots & \vdots & \vdots & \ddots
+\end{pmatrix}=1
+\end{equation}
+\normalsize
+ 
+ \begin{equation}\label{eq:2.27}
+     \Delta(\lambda)_{i}=1+K[\cot(\frac{\pi}{2}(\lambda+\theta_o^{1/2}))-\cot(\frac{\pi}{2}(\lambda-\theta_o^{1/2}))]
+ \end{equation}
+  
+ sustituimos \ref{eq:2.27} en \ref{eq:2.20}
+ 
+ \begin{equation}\label{eq:E.33}
+    \Delta(\lambda)= -\frac{\sin(\frac{\pi}{2}(\lambda-\theta_o^{1/2}))\sin(\frac{\pi}{2}(\lambda+ \theta_o^{1/2}))}{\sin^2(\frac{\pi}{2}\theta_o^{1/2})}\times\left[1+K\left[\cot(\frac{\pi}{2}(\lambda+\theta_o^{1/2}))-\cot(\frac{\pi}{2}(\lambda-\theta_o^{1/2}))\right]\right]
+\end{equation}
+
+Haciendo simplificaciones trigonométricas llegamos a
+
+\begin{equation}\label{eq:E.35}
+    \Delta_{(\lambda)}= -\frac{\sin(\frac{\pi}{2}(\lambda-\theta_o^{1/2}))\sin(\frac{\pi}{2}(\lambda+ \theta_o^{1/2}))}{\sin^2(\frac{\pi}{2}\theta_o^{1/2})}+2K\cot(\frac{\pi}{2}\theta_o^{1/2})
+\end{equation}
+
+Haciendo $\lambda=0$ hallamos el valor de $K$
+
+\begin{equation}\label{eq:E.36}
+    K= \frac{\Delta_{(0)}+1}{2\cot(\frac{\pi}{2}\theta_o^{1/2})}
+\end{equation}
+
+Sustituimos $K$ en \ref{eq:E.35}
+
+\begin{equation}\label{eq:E.37}
+    \Delta_{(\lambda)}= -\frac{\sin(\frac{\pi}{2}(\lambda-\theta_o^{1/2}))\sin(\frac{\pi}{2}(\lambda+ \theta_o^{1/2}))}{\sin^2(\frac{\pi}{2}\theta_o^{1/2})}+\Delta_{(0)}+1
+\end{equation}
+
+Expandiendo los senos en el numerador y usando identidades trigonométricas se obtiene
+
+
+\begin{equation}\label{eq:E.38}
+\Delta_{(\lambda)}=\Delta_{(0)}-\frac{\sin^2(\frac{\pi}{2}\lambda)}{\sin^2(\frac{\pi}{2}\theta_o^{1/2})}
+\end{equation}
+
+Como $\Delta_{(\lambda)}=0$ se hallan las raíces del determinante.
+
+\begin{equation}\label{eq:E.39}
+\Delta_{(0)}\sin^2(\frac{\pi}{2}\theta_o^{1/2})=\sin^2(\frac{\pi}{2}\lambda)
+\end{equation}
+
+Se puede truncar el determinante hasta cierto orden, $b_n$ decrece muy rápidamente y el elemento central corresponde a $n=0$, se supone además que $\theta_o \ll 1$ 
+
+\begin{equation}\label{eq:E.40}
+\begin{aligned}
+& \Delta_{(0)}^0=1 \\
+& \Delta_{(0)}^1=
+\begin{vmatrix}
+ 1 & \frac{\theta_1}{-4} & 0 \\ 
+\frac{\theta_1}{\theta_0} & 1 & \frac{\theta_1}{\theta_0}  \\
+ 0 & \frac{\theta_1}{-4} & 1 &  
+\end{vmatrix}
+= 
+\end{aligned}
+\end{equation}
+
+\begin{equation}\label{eq:E.41}
+\sin^2(\frac{\pi}{2}\theta_o^{1/2}) \approx \frac{\pi^2}{4}\theta_o
+\end{equation}
+
+\begin{equation}\label{eq:E.42}
+(1+\frac{\theta_1^2}{2\theta_o})\frac{\pi^2}{4}\theta_o=\sin^2(\frac{\pi}{2}\lambda) = Q
+\end{equation}
+
+$\lambda$ es real, por lo que 
+
+\begin{equation}\label{eq:E.43}
+0 \leq Q \leq 1
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Cálculo de los coeficientes bn en la solución de las ecuaciones de Mathieu}
+
+Recordando la ecuación
+
+\begin{equation}\label{eq:E.44}
+(\theta_o-(2n+\lambda)^2)b_n+\theta_1b_{n-1}+\theta_1b_{n+1}=0
+\end{equation}
+
+definiendo 
+
+\begin{equation}\label{eq:E.45}
+C_n=\theta_o-(2n+\lambda)^2
+\end{equation}
+
+\begin{equation}\label{eq:E.46}
+\begin{cases}
+\begin{aligned}
+-C_0b_0&=\theta_1b_{-1}+\theta_1b_{1}\\
+-C_1b_1&=\theta_1b_{0}+\theta_1b_{2}\\
+& \vdots
+\end{aligned}
+\end{cases}
+\end{equation}
+
+\section{Caso especial}
+
+Si se supone el caso especial de la ecuación de Hill de la forma:
+
+\begin{equation}
+    \frac{\partial u}{\partial Z}+\left(\theta_0+2\theta_1\cos(aZ)+2\theta_2\cos(2aZ)\right)u=0
+\end{equation}
+
+Con solución
+
+\begin{equation}
+    u=\sum^{\infty}_{n=-\infty} b_n e^{ia(n+\lambda)z}
+\end{equation}
+
+Un procedimiento análogo al que hemos realizado en este apéndice deja el resultado
+
+\begin{equation}
+\Delta_{(0)}\sin^2(\frac{\pi}{a}\theta_o^{1/2})=\sin^2(\pi\lambda)
+\end{equation}
+
+Con $\Delta_{(0)}$ resultante a primer orden
+
+\begin{equation}
+\begin{aligned}
+& \Delta_{(0)}^0=1 \\
+& \Delta_{(0)}^1=
+\begin{vmatrix}
+ 1 & \frac{\theta_1}{\theta_0-a^2} & \frac{\theta_2}{\theta_0-a^2} \\ 
+ \frac{\theta_1}{\theta_0} & 1 & \frac{\theta_1}{\theta_0}  \\
+ \frac{\theta_2}{\theta_0-a^2} & \frac{\theta_1}{\theta_0-a^2} & 1 &  
+\end{vmatrix}
+= 1+\frac{2\theta_1\theta_2^2-\theta_0\theta_2^2-\theta_1^2(\theta_0-a^2)}{\theta_0(\theta_0-a^2)^2}
+\end{aligned}
+\end{equation}
+
+
+
